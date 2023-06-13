@@ -20,7 +20,8 @@
 
   .hljs,
   pre {
-    background: #1a1b26;
+    // background: #1a1b26;
+    background: var(--markdown-code);
     color: #cbd2ea;
   }
 
