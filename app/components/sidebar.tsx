@@ -8,8 +8,7 @@ import GithubIcon from "../icons/github.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
-import MaskIcon from "../icons/mask.svg";
-import PluginIcon from "../icons/plugin.svg";
+import TwrapIcon from "../icons/twrap.svg";
 
 import Locale from "../locales";
 
@@ -119,9 +118,9 @@ export function SideBar(props: { className?: string }) {
       }`}
     >
       <div className={styles["sidebar-header"]}>
-        <div className={styles["sidebar-title"]}>ChatGPT Next</div>
+        <div className={styles["sidebar-title"]}>HumanChat</div>
         <div className={styles["sidebar-sub-title"]}>
-          Build your own AI assistant.
+          Customize Your AI Conversation Assistant.
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
@@ -130,17 +129,10 @@ export function SideBar(props: { className?: string }) {
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton
-          icon={<MaskIcon />}
+          icon={<TwrapIcon />}
           text={shouldNarrow ? undefined : Locale.Mask.Name}
           className={styles["sidebar-bar-button"]}
           onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
-          shadow
-        />
-        <IconButton
-          icon={<PluginIcon />}
-          text={shouldNarrow ? undefined : Locale.Plugin.Name}
-          className={styles["sidebar-bar-button"]}
-          onClick={() => showToast(Locale.WIP)}
           shadow
         />
       </div>

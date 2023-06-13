@@ -20,6 +20,11 @@
 
   /* stroke */
   --border-in-light: 1px solid rgb(222, 222, 222);
+
+  // 亮色：以下为自定义需求变量
+  --sidebar-background: rgb(200, 200, 200);
+  --sidebar-text-color: #ba0000;
+  --markdown-code: tranplant;
 }
 
 @mixin dark {
@@ -37,11 +42,16 @@
 
   --border-in-light: 1px solid rgba(255, 255, 255, 0.192);
 
-  --theme-color: var(--gray);
+  --theme-color: var(--black);
 
   div:not(.no-dark) > svg {
     filter: invert(0.5);
   }
+  // 暗色：此处为自定义需求变量
+  --sidebar-background: #000;
+  --sidebar-text-color: #BBB;
+  --markdown-code: rgb(72, 22, 30);
+
 }
 
 .light {

@@ -42,7 +42,7 @@
   width: var(--sidebar-width);
   box-sizing: border-box;
   padding: 20px;
-  background-color: var(--second);
+  background-color: var(--sidebar-background);
   display: flex;
   flex-direction: column;
   box-shadow: inset -2px 0px 2px 0px rgb(0, 0, 0, 0.05);
@@ -54,7 +54,7 @@
     margin-bottom: 20px;
 
     .sidebar-bar-button {
-      flex-grow: 1;
+      width: calc(50% - 10px);
 
       &:not(:last-child) {
         margin-right: 10px;
@@ -136,12 +136,14 @@
 .sidebar-title {
   font-size: 20px;
   font-weight: bold;
+  color: var(--sidebar-text-color);
   animation: slide-in ease 0.3s;
 }
 
 .sidebar-sub-title {
   font-size: 12px;
   font-weight: 400;
+  color: var(--sidebar-text-color);
   animation: slide-in ease 0.3s;
 }
 
@@ -232,6 +234,7 @@
     flex-direction: column;
 
     .sidebar-bar-button {
+      width: 100%;
       &:not(:last-child) {
         margin-right: 0;
         margin-bottom: 10px;
