@@ -26,6 +26,7 @@
   --sidebar-background: rgb(200, 200, 200);
   --sidebar-text-color: #ba0000;
   --markdown-code: #1a1b26;
+  --login-text-color: #ba0000;
 }
 
 @mixin dark {
@@ -53,7 +54,7 @@
   --sidebar-background: #000;
   --sidebar-text-color: #BBB;
   --markdown-code: rgb(72, 22, 30);
-
+  --login-text-color: #ba0000;
 }
 
 .light {
@@ -355,9 +356,9 @@ pre {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border-in-light);
+  // border: var(--border-in-light);
   box-shadow: var(--card-shadow);
-  border-radius: 10px;
+  // border-radius: 0px;
 }
 
 .one-line {

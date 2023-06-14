@@ -93,6 +93,10 @@ const en: RequiredLocaleType = {
   },
   Home: {
     UserLogin: "LOGIN",
+    LoginModelTitle: "Login HumanGPT",
+    PhonePlaceholder: "Please enter your phone number",
+    CodePlaceholder: "Please enter the verification code",
+    GetCode: "Get verification code",
     Residue: "Remaining times:",
     Plan: "Subscription Plan",
     CustomerService: "CustomerService",

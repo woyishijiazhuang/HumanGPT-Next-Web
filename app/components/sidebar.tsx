@@ -26,6 +26,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
+import { showLogin } from "./login";
+import LogoIcon from "../icons/logo.svg";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -123,7 +125,7 @@ export function SideBar(props: { className?: string }) {
           Customize Your AI Conversation Assistant.
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
-          <ChatGptIcon />
+          <LogoIcon />
         </div>
       </div>
 
@@ -171,7 +173,8 @@ export function SideBar(props: { className?: string }) {
                 icon={<UserIcon />}
                 text={shouldNarrow ? undefined : Locale.Home.UserLogin}
                 onClick={() => {
-                  alert("弹出登录框");
+                  // alert("弹出登录框");
+                  showLogin({});
                 }}
                 shadow
               />
