@@ -9,7 +9,7 @@ import ReturnIcon from "../icons/return.svg";
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import PromptIcon from "../icons/prompt.svg";
-import MaskIcon from "../icons/mask.svg";
+import KefuIcon from "../icons/kefu.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
 import ResetIcon from "../icons/reload.svg";
@@ -394,13 +394,14 @@ export function ChatActions(props: {
           icon={<BottomIcon />}
         />
       )}
-      {props.hitBottom && (
+      {/* 屏蔽了聊天框上的设置 */}
+      {/* {props.hitBottom && (
         <ChatAction
           onClick={props.showPromptModal}
           text={Locale.Chat.InputActions.Settings}
           icon={<SettingsIcon />}
         />
-      )}
+      )} */}
 
       <ChatAction
         onClick={nextTheme}
@@ -728,6 +729,15 @@ export function Chat() {
               bordered
               title={Locale.Chat.Actions.ChatList}
               onClick={() => navigate(Path.Home)}
+            />
+          </div>
+          {/* 新增客服按钮 */}
+          <div className="window-action-button">
+            <IconButton
+              icon={<KefuIcon />}
+              text="联系客服"
+              bordered
+              onClick={() => alert("新增客服")}
             />
           </div>
           <div className="window-action-button">

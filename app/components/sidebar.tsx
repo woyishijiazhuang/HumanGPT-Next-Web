@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 import styles from "./home.module.scss";
 
 import { IconButton } from "./button";
-import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
+import UserIcon from "../icons/user.svg";
+import MoneyIcon from "../icons/money.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
@@ -149,42 +149,70 @@ export function SideBar(props: { className?: string }) {
       </div>
 
       <div className={styles["sidebar-tail"]}>
-        <div className={styles["sidebar-actions"]}>
-          <div className={styles["sidebar-action"] + " " + styles.mobile}>
-            <IconButton
-              icon={<CloseIcon />}
-              onClick={() => {
-                if (confirm(Locale.Home.DeleteChat)) {
-                  chatStore.deleteSession(chatStore.currentSessionIndex);
-                }
-              }}
-            />
-          </div>
-          <div className={styles["sidebar-action"]}>
-            <Link to={Path.Settings}>
-              <IconButton icon={<SettingsIcon />} shadow />
-            </Link>
-          </div>
-          <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank">
-              <IconButton icon={<GithubIcon />} shadow />
-            </a>
-          </div>
-        </div>
-        <div>
+        <div className={styles["sidebar-action-close"] + " " + styles.mobile}>
           <IconButton
-            icon={<AddIcon />}
-            text={shouldNarrow ? undefined : Locale.Home.NewChat}
+            icon={<CloseIcon />}
             onClick={() => {
-              if (config.dontShowMaskSplashScreen) {
-                chatStore.newSession();
-                navigate(Path.Chat);
-              } else {
-                navigate(Path.NewChat);
+              if (confirm(Locale.Home.DeleteChat)) {
+                chatStore.deleteSession(chatStore.currentSessionIndex);
               }
             }}
-            shadow
           />
+        </div>
+        {/* <div className={styles["sidebar-action"]}>
+          <Link to={Path.Settings}>
+            <IconButton icon={<UserIcon />} shadow />
+          </Link>
+        </div> */}
+        <div className={styles["sidebar-actions"]}>
+          <div>
+            <div className={styles["sidebar-action"]}>
+              <IconButton
+                icon={<UserIcon />}
+                text={shouldNarrow ? undefined : Locale.Home.UserLogin}
+                onClick={() => {
+                  alert("弹出登录框");
+                }}
+                shadow
+              />
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <IconButton
+                text={(shouldNarrow ? "" : Locale.Home.Residue) + "20"}
+                onClick={() => {
+                  alert("这里要与后端交互写对话剩余次数");
+                }}
+                shadow
+              />
+            </div>
+          </div>
+          <div>
+            <div className={styles["sidebar-action"]}>
+              <IconButton
+                icon={<MoneyIcon />}
+                text={shouldNarrow ? undefined : Locale.Home.Plan}
+                onClick={() => {
+                  alert("弹出订阅");
+                }}
+                shadow
+              />
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <IconButton
+                icon={<AddIcon />}
+                text={shouldNarrow ? undefined : Locale.Home.NewChat}
+                onClick={() => {
+                  if (config.dontShowMaskSplashScreen) {
+                    chatStore.newSession();
+                    navigate(Path.Chat);
+                  } else {
+                    navigate(Path.NewChat);
+                  }
+                }}
+                shadow
+              />
+            </div>
+          </div>
         </div>
       </div>
 

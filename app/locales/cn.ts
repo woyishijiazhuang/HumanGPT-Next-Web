@@ -90,6 +90,10 @@ const cn = {
     ResetConfirm: "确认清空历史摘要？",
   },
   Home: {
+    UserLogin: "用户登录",
+    Residue: "剩余对话数：",
+    Plan: "订阅计划",
+    CustomerService: "联系客服",
     NewChat: "新的聊天",
     DeleteChat: "确认删除选中的对话？",
     DeleteToast: "已删除会话",

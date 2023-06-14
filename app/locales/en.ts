@@ -92,6 +92,10 @@ const en: RequiredLocaleType = {
       "Resetting will clear the current conversation history and historical memory. Are you sure you want to reset?",
   },
   Home: {
+    UserLogin: "LOGIN",
+    Residue: "Remaining times:",
+    Plan: "Subscription Plan",
+    CustomerService: "CustomerService",
     NewChat: "New Chat",
     DeleteChat: "Confirm to delete the selected conversation?",
     DeleteToast: "Chat Deleted",
