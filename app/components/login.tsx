@@ -37,11 +37,11 @@ export function LoginModal(props: ModalProps) {
 
   function phoneKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
     // 对手机号做验证
-    setPhone($event.target.value);
+    setPhone(($event.target as HTMLInputElement).value);
   }
 
   function codeKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
-    const code = $event.target.value;
+    const code = ($event.target as HTMLInputElement).value;
     if (code.length == 6) {
       setCode(code);
       APIlogin();
