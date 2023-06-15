@@ -28,6 +28,7 @@ import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
 import { showLogin } from "./login";
 import LogoIcon from "../icons/logo.svg";
+import { Subscribe, showSubscribe } from "./subscribe";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -195,7 +196,7 @@ export function SideBar(props: { className?: string }) {
                 icon={<MoneyIcon />}
                 text={shouldNarrow ? undefined : Locale.Home.Plan}
                 onClick={() => {
-                  alert("弹出订阅");
+                  showSubscribe();
                 }}
                 shadow
               />

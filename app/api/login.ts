@@ -25,7 +25,7 @@ export const APIlogin = () => {
     .then((response) => response.json())
     .then((data) => {
       if (data.message == "success") {
-        alert("登录成功，后续还要做一些状态变更");
+        alert("登录成功，后续还要做一些状态变更,以及弹窗样式的修改");
       }
     });
 };

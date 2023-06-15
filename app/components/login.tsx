@@ -10,7 +10,6 @@ import { IconButton } from "../components/button";
 
 import { useUserStore } from "../store/user";
 import { APIgetCode, APIlogin } from "../api/login";
-import tr from "../locales/tr";
 
 interface ModalProps {
   children?: JSX.Element | JSX.Element[];
