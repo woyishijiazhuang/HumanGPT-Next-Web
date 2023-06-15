@@ -37,6 +37,7 @@ export function Subscribe(props: ModalProps) {
     "18个预处理器聊天模型",
     "迅捷的响应速度",
     "极高易用性",
+    "",
   ];
   const listB = [
     "季度无限次使用",
@@ -120,7 +121,7 @@ function Taocan(props: { name: string; price: string; title: string }) {
 function List(props: { list: any[] }) {
   const i = (s: string | number) => (
     <div className={styles["list-item"]}>
-      <TickIcon></TickIcon>
+      {s && <TickIcon></TickIcon>}
       <span>{s}</span>
     </div>
   );

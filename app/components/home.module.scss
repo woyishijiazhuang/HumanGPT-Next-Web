@@ -437,6 +437,14 @@
   word-break: break-word;
   border: var(--border-in-light);
   position: relative;
+
+  button {
+    padding: 10px;
+    background: #ba0000;
+    border-radius: 10px;
+    border: none;
+    color: white;
+  }
 }
 
 .chat-message-top-actions {
