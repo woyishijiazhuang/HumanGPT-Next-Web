@@ -7,6 +7,11 @@ import styles from "./login.module.scss";
 import CloseIcon from "../icons/close.svg";
 import Locale from "../locales";
 import { IconButton } from "../components/button";
+
+import { useUserStore } from "../store/user";
+import { APIgetCode, APIlogin } from "../api/login";
+import tr from "../locales/tr";
+
 interface ModalProps {
   children?: JSX.Element | JSX.Element[];
   onClose?: () => void;
@@ -28,6 +33,22 @@ export function LoginModal(props: ModalProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const { setPhone, setCode, token, setToken, loginButton, setLoginButton } =
+    useUserStore();
+
+  function phoneKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
+    // 对手机号做验证
+    setPhone($event.target.value);
+  }
+
+  function codeKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
+    const code = $event.target.value;
+    if (code.length == 6) {
+      setCode(code);
+      APIlogin();
+    }
+  }
+
   return (
     <div className={styles["login-container"]}>
       <div className={styles["login-close-btn"]} onClick={props.onClose}>
@@ -39,7 +60,7 @@ export function LoginModal(props: ModalProps) {
         type="number"
         maxLength={11}
         placeholder={Locale.Home.PhonePlaceholder}
-        onKeyUp={phoneKeyUp}
+        onKeyUp={($event) => phoneKeyUp($event)}
       />
       <div>
         <input
@@ -51,7 +72,17 @@ export function LoginModal(props: ModalProps) {
         />
         <IconButton
           text={Locale.Home.GetCode}
-          onClick={() => alert("获取验证码")}
+          onClick={() => {
+            APIgetCode();
+            if (loginButton) {
+              setLoginButton(false);
+              setTimeout(() => {
+                setLoginButton(true);
+              }, 60000);
+            } else {
+              alert("验证码已发送，请等待或稍后重试");
+            }
+          }}
         />
       </div>
     </div>
@@ -77,12 +108,4 @@ export function showLogin(props: ModalProps) {
   };
 
   root.render(<LoginModal {...props} onClose={closeModal}></LoginModal>);
-}
-
-function phoneKeyUp() {
-  console.log("input phone");
-}
-
-function codeKeyUp() {
-  console.log("input code");
 }

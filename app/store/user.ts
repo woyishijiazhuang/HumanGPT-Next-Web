@@ -1,20 +1,28 @@
 import { create } from "zustand";
 
 interface UserStore {
-  loginStatus: boolean;
+  token: string;
+  setToken: (token: string) => void;
 
-  phone: number;
-  setPhone: (phone: number) => void;
+  phone: string;
+  setPhone: (phone: string) => void;
 
-  code: number;
-  setCode: (code: number) => void;
+  code: string;
+  setCode: (code: string) => void;
+
+  loginButton: boolean;
+  setLoginButton: (b: boolean) => void;
 }
 export const useUserStore = create<UserStore>((set) => ({
-  loginStatus: false,
+  token: "",
+  setToken: (token) => set({ token: token }),
 
-  phone: 0,
+  phone: "",
   setPhone: (phone) => set({ phone: phone }),
 
-  code: 0,
+  code: "",
   setCode: (code) => set({ code: code }),
+
+  loginButton: true,
+  setLoginButton: (b) => set({ loginButton: b }),
 }));
