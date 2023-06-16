@@ -65,6 +65,8 @@ export function LoginModal(props: ModalProps) {
         setChatnum(resultData.num);
         // 存vip等级
         setVipType(resultData.vipType);
+        // 关闭登录框
+        props.onClose?.();
       });
     }
   }
@@ -98,10 +100,7 @@ export function LoginModal(props: ModalProps) {
               return;
             }
             if (loginButton) {
-              APIgetCode(phone).then(() => {
-                props.onClose!!();
-                // 弹出消息提示
-              });
+              APIgetCode(phone);
               setLoginButton(false);
               setTimeout(() => {
                 setLoginButton(true);

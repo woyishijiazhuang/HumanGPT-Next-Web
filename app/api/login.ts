@@ -9,7 +9,7 @@ export const APIgetCode = (phone: string) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.message == "success") {
-        alert("验证码已发送");
+        alert("验证码已发送,做成消息提示");
       }
     });
 };
@@ -25,7 +25,6 @@ export const APIlogin = (phone: string, code: string) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.msg == "success") {
-        alert("登录成功，后续还要做消息提示,以及关闭登录框");
         return data.resultData;
       } else {
         alert(data.msg);
