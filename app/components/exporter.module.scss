@@ -108,13 +108,13 @@
     background-color: var(--gray);
 
     .chat-info {
-      background-color: var(--second);
+      background-color: var(--sidebar-background);
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start;
       position: relative;
       overflow: hidden;
 
@@ -136,11 +136,13 @@
       }
 
       .main-title {
+        color: var(--primary);
         font-size: 20px;
         font-weight: bolder;
       }
 
       .sub-title {
+        color: var(--primary);
         font-size: 12px;
       }
 

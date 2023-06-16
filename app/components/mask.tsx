@@ -325,7 +325,8 @@ export function MaskPage() {
           </div>
 
           <div className="window-actions">
-            <div className="window-action-button">
+            {/* 删除上传下载按钮 */}
+            {/* <div className="window-action-button">
               <IconButton
                 icon={<DownloadIcon />}
                 bordered
@@ -338,7 +339,7 @@ export function MaskPage() {
                 bordered
                 onClick={() => importFromFile()}
               />
-            </div>
+            </div> */}
             <div className="window-action-button">
               <IconButton
                 icon={<CloseIcon />}
@@ -454,18 +455,19 @@ export function MaskPage() {
             title={Locale.Mask.EditModal.Title(editingMask?.builtin)}
             onClose={closeMaskModal}
             actions={[
-              <IconButton
-                icon={<DownloadIcon />}
-                text={Locale.Mask.EditModal.Download}
-                key="export"
-                bordered
-                onClick={() =>
-                  downloadAs(
-                    JSON.stringify(editingMask),
-                    `${editingMask.name}.json`,
-                  )
-                }
-              />,
+              // 删除下载预设
+              // <IconButton
+              //   icon={<DownloadIcon />}
+              //   text={Locale.Mask.EditModal.Download}
+              //   key="export"
+              //   bordered
+              //   onClick={() =>
+              //     downloadAs(
+              //       JSON.stringify(editingMask),
+              //       `${editingMask.name}.json`,
+              //     )
+              //   }
+              // />,
               <IconButton
                 key="copy"
                 icon={<CopyIcon />}

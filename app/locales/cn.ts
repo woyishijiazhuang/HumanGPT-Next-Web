@@ -56,10 +56,10 @@ const cn = {
     },
   },
   Export: {
-    Title: "分享聊天记录",
+    Title: "将HumanGPT分享给身边的人",
     Copy: "全部复制",
     Download: "下载文件",
-    Share: "分享到 ShareGPT",
+    Share: "分享到微信朋友圈",
     MessageFromYou: "来自你的消息",
     MessageFromChatGPT: "来自 ChatGPT 的消息",
     Format: {
@@ -221,7 +221,7 @@ const cn = {
   Context: {
     Toast: (x: any) => `包含 ${x} 条预设提示词`,
     Edit: "当前对话设置",
-    Add: "新增预设对话",
+    Add: "新建自定义功能",
     Clear: "上下文已清除",
     Revert: "恢复上下文",
   },
@@ -231,8 +231,8 @@ const cn = {
   Mask: {
     Name: "功能列表",
     Page: {
-      Title: "预设角色面具",
-      SubTitle: (count: number) => `${count} 个预设角色定义`,
+      Title: "预设功能",
+      SubTitle: (count: number) => `选择HG能帮你做的什么`,
       Search: "搜索角色面具",
       Create: "新建",
     },
@@ -246,21 +246,21 @@ const cn = {
     },
     EditModal: {
       Title: (readonly: boolean) =>
-        `编辑预设面具 ${readonly ? "（只读）" : ""}`,
+        `自定义聊天功能 ${readonly ? "（只读）" : ""}`,
       Download: "下载预设",
-      Clone: "克隆预设",
+      Clone: "确认",
     },
     Config: {
-      Avatar: "角色头像",
-      Name: "角色名称",
+      Avatar: "功能头像",
+      Name: "功能名称",
       Sync: {
         Title: "使用全局设置",
         SubTitle: "当前对话是否使用全局模型设置",
         Confirm: "当前对话的自定义设置将会被自动覆盖，确认启用全局设置？",
       },
       HideContext: {
-        Title: "隐藏预设对话",
-        SubTitle: "隐藏后预设对话不会出现在聊天界面",
+        Title: "隐藏自定义对话",
+        SubTitle: "隐藏后自定义对话不会出现在你的页面",
       },
     },
   },

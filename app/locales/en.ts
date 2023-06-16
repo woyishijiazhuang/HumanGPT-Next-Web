@@ -57,12 +57,12 @@ const en: RequiredLocaleType = {
     },
   },
   Export: {
-    Title: "Export Messages",
+    Title: "Share HumanGPT with people around you",
     Copy: "Copy All",
     Download: "Download",
     MessageFromYou: "Message From You",
     MessageFromChatGPT: "Message From ChatGPT",
-    Share: "Share to ShareGPT",
+    Share: "Share to WeChat Moments",
     Format: {
       Title: "Export Format",
       SubTitle: "Markdown or PNG Image",
@@ -224,7 +224,7 @@ const en: RequiredLocaleType = {
   Context: {
     Toast: (x: any) => `With ${x} contextual prompts`,
     Edit: "Contextual and Memory Prompts",
-    Add: "Add a Prompt",
+    Add: "New Custom Function",
     Clear: "Context Cleared",
     Revert: "Revert",
   },
@@ -234,8 +234,8 @@ const en: RequiredLocaleType = {
   Mask: {
     Name: "List of features",
     Page: {
-      Title: "Prompt Template",
-      SubTitle: (count: number) => `${count} prompt templates`,
+      Title: "Preset function",
+      SubTitle: (count: number) => `What can HG help you with`,
       Search: "Search Templates",
       Create: "Create",
     },
@@ -249,21 +249,22 @@ const en: RequiredLocaleType = {
     },
     EditModal: {
       Title: (readonly: boolean) =>
-        `Edit Prompt Template ${readonly ? "(readonly)" : ""}`,
+        `Customize chat function ${readonly ? "(readonly)" : ""}`,
       Download: "Download",
-      Clone: "Clone",
+      Clone: "confirm",
     },
     Config: {
-      Avatar: "Bot Avatar",
-      Name: "Bot Name",
+      Avatar: "Functional Avatar",
+      Name: "Function Name",
       Sync: {
         Title: "Use Global Config",
         SubTitle: "Use global config in this chat",
         Confirm: "Confirm to override custom config with global config?",
       },
       HideContext: {
-        Title: "Hide Context Prompts",
-        SubTitle: "Do not show in-context prompts in chat",
+        Title: "Hide Custom Conversations",
+        SubTitle:
+          "Customized conversations will not appear on your page after hiding",
       },
     },
   },

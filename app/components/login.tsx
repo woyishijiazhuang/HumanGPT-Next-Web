@@ -10,7 +10,7 @@ import { IconButton } from "../components/button";
 
 import { useUserStore } from "../store/user";
 import { APIgetCode, APIlogin } from "../api/login";
-
+import { useAccessStore } from "../store";
 interface ModalProps {
   children?: JSX.Element | JSX.Element[];
   onClose?: () => void;
@@ -32,19 +32,29 @@ export function LoginModal(props: ModalProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { setPhone, setCode, token, setToken, loginButton, setLoginButton } =
-    useUserStore();
+  const {
+    phone,
+    setPhone,
+    code,
+    setCode,
+    token,
+    setToken,
+    loginButton,
+    setLoginButton,
+  } = useUserStore();
 
   function phoneKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
     // 对手机号做验证
     setPhone(($event.target as HTMLInputElement).value);
   }
-
+  const accessStore = useAccessStore();
   function codeKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
     const code = ($event.target as HTMLInputElement).value;
     if (code.length == 6) {
       setCode(code);
-      APIlogin();
+      APIlogin(phone, code).then((key) => {
+        accessStore.updateToken(key);
+      });
     }
   }
 
@@ -65,15 +75,15 @@ export function LoginModal(props: ModalProps) {
         <input
           id={styles["login-code"]}
           type="number"
-          maxLength={6}
+          maxLength={4}
           placeholder={Locale.Home.CodePlaceholder}
           onKeyUp={codeKeyUp}
         />
         <IconButton
           text={Locale.Home.GetCode}
           onClick={() => {
-            APIgetCode();
             if (loginButton) {
+              APIgetCode(phone);
               setLoginButton(false);
               setTimeout(() => {
                 setLoginButton(true);

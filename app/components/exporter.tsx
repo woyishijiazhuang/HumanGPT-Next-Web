@@ -105,11 +105,12 @@ function Steps<
 }
 
 export function MessageExporter() {
+  // 删除选取功能
   const steps = [
-    {
-      name: Locale.Export.Steps.Select,
-      value: "select",
-    },
+    // {
+    //   name: Locale.Export.Steps.Select,
+    //   value: "select",
+    // },
     {
       name: Locale.Export.Steps.Preview,
       value: "preview",
@@ -272,21 +273,29 @@ export function PreviewActions(props: {
 
   const onRenderMsgs = (msgs: ChatMessage[]) => {
     setShouldExport(false);
-
-    api
-      .share(msgs)
-      .then((res) => {
-        if (!res) return;
-        copyToClipboard(res);
-        setTimeout(() => {
-          window.open(res, "_blank");
-        }, 800);
-      })
+    // 微信分享
+    new Promise(() => {
+      alert("分享到微信，等待实现");
+    })
       .catch((e) => {
-        console.error("[Share]", e);
-        showToast(prettyObject(e));
+        alert(e);
       })
       .finally(() => setLoading(false));
+
+    // api
+    //   .share(msgs)
+    //   .then((res) => {
+    //     if (!res) return;
+    //     copyToClipboard(res);
+    //     setTimeout(() => {
+    //       window.open(res, "_blank");
+    //     }, 800);
+    //   })
+    //   .catch((e) => {
+    //     console.error("[Share]", e);
+    //     showToast(prettyObject(e));
+    //   })
+    //   .finally(() => setLoading(false));
   };
 
   const share = async () => {
@@ -439,26 +448,26 @@ export function ImagePreviewer(props: {
           <div>
             <div className={styles["main-title"]}>HumanChat Web</div>
             <div className={styles["sub-title"]}>
-              github.com/Yidadaa/ChatGPT-Next-Web
+              Customize Your Al Conversation Assistant.
             </div>
-            <div className={styles["icons"]}>
+            {/* <div className={styles["icons"]}>
               <ExportAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
               <ExportAvatar avatar={mask.avatar} />
-            </div>
+            </div> */}
           </div>
           <div>
             <div className={styles["chat-info-item"]}>
-              Model: {mask.modelConfig.model}
+              模型: {mask.modelConfig.model}
             </div>
             <div className={styles["chat-info-item"]}>
-              Messages: {props.messages.length}
+              信息数: {props.messages.length}
             </div>
             <div className={styles["chat-info-item"]}>
-              Topic: {session.topic}
+              预设功能: {session.topic}
             </div>
             <div className={styles["chat-info-item"]}>
-              Time:{" "}
+              使用时间:{" "}
               {new Date(
                 props.messages.at(-1)?.date ?? Date.now(),
               ).toLocaleString()}
