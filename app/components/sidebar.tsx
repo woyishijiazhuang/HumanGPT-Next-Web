@@ -29,6 +29,7 @@ import { showToast } from "./ui-lib";
 import { showLogin } from "./login";
 import LogoIcon from "../icons/logo.svg";
 import { Subscribe, showSubscribe } from "./subscribe";
+import { useUserStore } from "../store/user";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -111,7 +112,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-
+  const userStore = useUserStore();
   useHotKey();
 
   return (
@@ -170,21 +171,39 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-actions"]}>
           <div>
             <div className={styles["sidebar-action"]}>
-              <IconButton
-                icon={<UserIcon />}
-                text={shouldNarrow ? undefined : Locale.Home.UserLogin}
-                onClick={() => {
-                  // alert("弹出登录框");
-                  showLogin({});
-                }}
-                shadow
-              />
+              {userStore.token == "" ? (
+                <IconButton
+                  icon={<UserIcon />}
+                  text={shouldNarrow ? undefined : Locale.Home.UserLogin}
+                  onClick={() => {
+                    // alert("弹出登录框");
+                    showLogin({});
+                  }}
+                  shadow
+                />
+              ) : (
+                <IconButton
+                  icon={<UserIcon />}
+                  text={shouldNarrow ? undefined : Locale.Home.UserLoginOut}
+                  onClick={() => {
+                    // 删除登录信息
+                    userStore.setToken("");
+                    userStore.setPhone("");
+                    userStore.setCode("");
+                    userStore.setChatnum(0);
+                    userStore.setVipType("");
+                  }}
+                  shadow
+                />
+              )}
             </div>
             <div className={styles["sidebar-action"]}>
               <IconButton
-                text={(shouldNarrow ? "" : Locale.Home.Residue) + "20"}
+                text={
+                  (shouldNarrow ? "" : Locale.Home.Residue) + userStore.chatnum
+                }
                 onClick={() => {
-                  alert("这里要与后端交互写对话剩余次数");
+                  // alert("这里要与后端交互写对话剩余次数");
                 }}
                 shadow
               />

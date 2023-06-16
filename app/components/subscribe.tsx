@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import styles from "./subscribe.module.scss";
@@ -56,7 +56,11 @@ export function Subscribe(props: ModalProps) {
     "自定义聊天功能",
     "极高易用性",
   ];
-
+  const [tc, setTc] = useState(1); //1套餐13.9元, 2套餐39.9元, 3套餐99.9元
+  const [pay, setPay] = useState(1); //支付宝1,微信2
+  function getPayImg() {
+    alert(`请求支付二维码,套餐${tc},支付方式${pay}`);
+  }
   return (
     <div className={styles["subscribe-container"]}>
       <div className={styles["close-btn"]} onClick={props.onClose}>
@@ -81,7 +85,26 @@ export function Subscribe(props: ModalProps) {
         <p>支付通道</p>
         <div>
           <div className={styles["code"]}></div>
-          <div className={styles["payplant"]}></div>
+          <div className={styles["payplant"]}>
+            <a
+              href="javascript:void(0)"
+              className={styles["zhifubao"]}
+              onClick={() => setPay(1)}
+            >
+              <img></img>
+              支付宝支付
+              <TickIcon></TickIcon>
+            </a>
+            <a
+              href="javascript:void(0)"
+              className={styles["weixin"]}
+              onClick={() => setPay(2)}
+            >
+              <img></img>
+              微信支付
+              <TickIcon></TickIcon>
+            </a>
+          </div>
         </div>
       </div>
     </div>

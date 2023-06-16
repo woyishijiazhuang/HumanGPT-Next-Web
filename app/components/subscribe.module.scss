@@ -89,7 +89,6 @@
                 // border: 1px solid red;
             }
             svg {
-                color: #ba0000;
                 margin: 0.3em 0.3em 0 0;
             }
         }
@@ -139,10 +138,64 @@
             background: white;
         }
         .payplant {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
             width: 220px;
             height: 100px;
             border-radius: 10px;
             background: white;
+            
+            a {
+                box-sizing: border-box;
+                position: relative;
+                text-decoration: none;
+                // border: 1px solid black;
+                box-shadow: 0 0 2px;
+                border-radius: 6px;
+                width: 93%;
+                height: 40px;
+                line-height: 40px;
+                color: black;
+                img {
+                    width: 40px;
+                    height: 40px;
+                    margin: 0 10px;
+                    vertical-align: top;
+                }
+                svg {
+                    display: none;
+                }
+                &:active {
+                    color: black;
+                }
+                &:focus{
+                    // line-height: 36px;
+                    svg {
+                        display: block;
+                        position: absolute;
+                        top: 12px;
+                        right: 10px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .zhifubao {
+                &:focus {
+                    color: #1678ff;
+                    box-shadow: 0 0 0 1px rgb(59, 154, 255);
+                }
+                
+            }
+            .weixin {
+                &:focus {
+                    color: #62b900;
+                    box-shadow: 0 0 0 1px rgb(68, 177, 68);
+                }
+            }
         }
     }
 }

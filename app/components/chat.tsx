@@ -901,14 +901,6 @@ export function Chat() {
               </div>
 
               <div className={styles["chat-message-item"]}>
-                {/* <div className={styles["chat-message-top-actions"]}>
-                  <div
-                    className={styles["chat-message-top-action"]}
-                    onClick={() => setkefuMessage(false)}
-                  >
-                    点击返回对话
-                  </div>
-                </div> */}
                 <img width="100px" height="100px"></img>
                 <p>扫码关注公众号</p>
                 <button onClick={() => setkefuMessage(false)}>

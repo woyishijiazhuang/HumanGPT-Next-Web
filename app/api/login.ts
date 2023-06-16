@@ -1,9 +1,11 @@
+import { headers } from "next/dist/client/components/headers";
+
 const PROTOCOL = "http";
 const ROOTURL = "8.219.92.9:18005";
 
 export const APIgetCode = (phone: string) => {
   console.log("APIgetCode:" + phone);
-  fetch(`${PROTOCOL}://${ROOTURL}/sendmessage?phone=${phone}`)
+  return fetch(`${PROTOCOL}://${ROOTURL}/sendmessage?phone=${phone}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.message == "success") {
@@ -15,18 +17,18 @@ export const APIgetCode = (phone: string) => {
 export const APIlogin = (phone: string, code: string) => {
   return fetch(`${PROTOCOL}://${ROOTURL}/login`, {
     method: "POST",
-    headers: {
+    headers: new Headers({
       "Content-Type": "application/json",
-    },
+    }),
     body: JSON.stringify({ phone, code }),
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.message == "success") {
-        alert("登录成功，后续还要做一些状态变更,以及弹窗样式的修改");
-        return data.resultData.key;
+      if (data.msg == "success") {
+        alert("登录成功，后续还要做消息提示,以及关闭登录框");
+        return data.resultData;
       } else {
-        alert("登录error");
+        alert(data.msg);
       }
     });
 };

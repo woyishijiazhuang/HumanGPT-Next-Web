@@ -91,6 +91,7 @@ const cn = {
   },
   Home: {
     UserLogin: "用户登录",
+    UserLoginOut: "退出登录",
     LoginModelTitle: "登录HumanGPT",
     PhonePlaceholder: "请输入您的手机号",
     CodePlaceholder: "请输入验证码",

@@ -41,10 +41,14 @@ export function LoginModal(props: ModalProps) {
     setToken,
     loginButton,
     setLoginButton,
+    chatnum,
+    setChatnum,
+    vipType,
+    setVipType,
   } = useUserStore();
 
   function phoneKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
-    // 对手机号做验证
+    // 手机号
     setPhone(($event.target as HTMLInputElement).value);
   }
   const accessStore = useAccessStore();
@@ -52,8 +56,15 @@ export function LoginModal(props: ModalProps) {
     const code = ($event.target as HTMLInputElement).value;
     if (code.length == 6) {
       setCode(code);
-      APIlogin(phone, code).then((key) => {
-        accessStore.updateToken(key);
+      APIlogin(phone, code).then((resultData) => {
+        // 存登录状态
+        setToken("login");
+        // 存apikey
+        accessStore.updateToken(resultData.key);
+        // 存聊天次数
+        setChatnum(resultData.num);
+        // 存vip等级
+        setVipType(resultData.vipType);
       });
     }
   }
@@ -82,14 +93,21 @@ export function LoginModal(props: ModalProps) {
         <IconButton
           text={Locale.Home.GetCode}
           onClick={() => {
+            if (phone.length != 11) {
+              alert("手机号长度不符合");
+              return;
+            }
             if (loginButton) {
-              APIgetCode(phone);
+              APIgetCode(phone).then(() => {
+                props.onClose!!();
+                // 弹出消息提示
+              });
               setLoginButton(false);
               setTimeout(() => {
                 setLoginButton(true);
-              }, 60000);
+              }, 600000);
             } else {
-              alert("验证码已发送，请等待或稍后重试");
+              alert("验证码已发送，请等待或稍后重试,60s样式待做");
             }
           }}
         />

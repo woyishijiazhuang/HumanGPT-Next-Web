@@ -12,6 +12,12 @@ interface UserStore {
 
   loginButton: boolean;
   setLoginButton: (b: boolean) => void;
+
+  chatnum: number;
+  setChatnum: (num: number) => void;
+
+  vipType: string;
+  setVipType: (num: string) => void;
 }
 export const useUserStore = create<UserStore>((set) => ({
   token: "",
@@ -25,4 +31,10 @@ export const useUserStore = create<UserStore>((set) => ({
 
   loginButton: true,
   setLoginButton: (b) => set({ loginButton: b }),
+
+  chatnum: 0,
+  setChatnum: (num) => set({ chatnum: num }),
+
+  vipType: "0",
+  setVipType: (s) => set({ vipType: s }),
 }));
