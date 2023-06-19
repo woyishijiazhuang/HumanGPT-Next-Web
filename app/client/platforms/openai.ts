@@ -89,6 +89,8 @@ export class ChatGPTApi implements LLMApi {
             );
 
             if (contentType?.startsWith("text/plain")) {
+              // 新增减少消息的api
+              console.info("请求成功");
               responseText = await res.clone().text();
               return finish();
             }
@@ -100,6 +102,7 @@ export class ChatGPTApi implements LLMApi {
                 ?.startsWith(EventStreamContentType) ||
               res.status !== 200
             ) {
+              console.info("请求失败！");
               const responseTexts = [responseText];
               let extraInfo = await res.clone().text();
               try {

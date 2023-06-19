@@ -6,8 +6,36 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .window-header-main-title > span {
+    display: none;
+  }
 }
+@media only screen and (max-width: 600px) {
+  .window-header {
+    flex-direction: column;
+    text-align: center;
+    .window-header-main-title {
+      margin-bottom: 10px;
+    }
+    .window-header-main-title > span {
+      display: inline;
+    }
+    .window-header-sub-title {
+      display: none;
+    }
+  }
 
+  .window-actions {
+    width: 100%;
+    justify-content: flex-end;
+    // .window-action-button:first-child {
+    //   transform: translateX(-100%);
+    // }
+    button {
+      padding: 10px;
+    }
+  }
+}
 .window-header-title {
   max-width: calc(100% - 100px);
   overflow: hidden;

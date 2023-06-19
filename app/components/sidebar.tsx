@@ -5,7 +5,6 @@ import styles from "./home.module.scss";
 import { IconButton } from "./button";
 import UserIcon from "../icons/user.svg";
 import MoneyIcon from "../icons/money.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import TwrapIcon from "../icons/twrap.svg";
@@ -30,6 +29,7 @@ import { showLogin } from "./login";
 import LogoIcon from "../icons/logo.svg";
 import { showSubscribe } from "./subscribe";
 import { useUserStore } from "../store/user";
+import { createBubble } from "./bubble";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -205,6 +205,9 @@ export function SideBar(props: { className?: string }) {
                 }
                 onClick={() => {
                   // alert("这里要与后端交互写对话剩余次数");
+                  createBubble({
+                    msg: "测试气泡通知",
+                  });
                 }}
                 shadow
               />

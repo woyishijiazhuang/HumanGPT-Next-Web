@@ -22,7 +22,7 @@
             display: block;
             box-sizing: content-box;
             width: 30%;
-            height: 170px;
+            // height: 170px;
 
         }
         input {
@@ -64,7 +64,7 @@
         list-style: none;
         margin: 0;
         padding: 0 20px;
-        background: #ccc;
+        // background: #ccc;
         display: grid;
         grid-template-columns: repeat(3, 138px);
     }
@@ -251,5 +251,44 @@
                 }
             }
         }
+    }
+}
+@media only screen and (max-width: 600px){
+    .subscribe-container{
+        width: 360px;
+        height: 540px;
+        overflow: hidden;
+        .package {
+            label {
+                height: auto;
+            }
+            .taocan-name {
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 40px;
+                // background-color: rebeccapurple;
+            }
+            .taocan-price {
+                font-size: 28px;
+                font-weight: 900;
+                line-height: 48px;
+                // background-color: aqua;
+            }
+            .taocan-title {
+                font-size: 12px;
+                line-height: 22px;
+
+                // background-color: blue;
+            }
+        }
+        .list {
+            // display: none;
+            grid-template-columns: repeat(3, 33.33%);
+            font-size: 13px;
+            svg {
+                vertical-align: text-top;
+            }
+        }
+
     }
 }

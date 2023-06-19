@@ -34,6 +34,7 @@ function Subscribe(onClose?: () => void) {
     "自定义聊天功能",
     "极高易用性",
   ];
+  const [list, setList] = useState(listA);
 
   // 套餐选中状态，默认第一个套餐；1套餐13.9元, 2套餐39.9元, 3套餐99.9元
   const [tc, setTc] = useState(0);
@@ -56,7 +57,10 @@ function Subscribe(onClose?: () => void) {
             name="tc"
             value={0}
             checked={tc == 0}
-            onChange={() => setTc(0)}
+            onChange={() => {
+              setTc(0);
+              setList(listA);
+            }}
           />
           <label htmlFor="tc1">
             <Taocan name="A" price="13.9" title="HumanChat试用计划" />
@@ -70,7 +74,10 @@ function Subscribe(onClose?: () => void) {
             name="tc"
             value={1}
             checked={tc == 1}
-            onChange={() => setTc(1)}
+            onChange={() => {
+              setTc(1);
+              setList(listB);
+            }}
           />
           <label htmlFor="tc2">
             <Taocan name="B" price="39.9" title="HumanChat季度无限次"></Taocan>
@@ -84,14 +91,17 @@ function Subscribe(onClose?: () => void) {
             name="tc"
             value={2}
             checked={tc == 2}
-            onChange={() => setTc(2)}
+            onChange={() => {
+              setTc(2);
+              setList(listC);
+            }}
           />
           <label htmlFor="tc3">
             <Taocan name="C" price="99.9" title="HumanChat年度无限次"></Taocan>
           </label>
         </div>
       </div>
-      <List list={listA}></List>
+      <List list={list}></List>
       <div className={styles["pay"]}>
         <p>支付通道</p>
         <div>

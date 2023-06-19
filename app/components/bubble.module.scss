@@ -1,0 +1,33 @@
+.bubble-list {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+.bubble {
+    // width: 160px;
+    padding: 1em;
+    background: var(--primary);
+    border-radius: 10px;
+
+    font-size: 12px;
+    // font-weight: 900;
+    color: white;
+    animation: 4s linear fadeinout ;
+    svg {
+        color: white;
+        vertical-align: text-top;
+        margin-right: .5em;
+        filter: none!important;
+    }
+}
+@keyframes fadeinout {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
