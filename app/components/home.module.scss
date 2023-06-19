@@ -55,6 +55,7 @@
 
     .sidebar-bar-button {
       width: calc(50% - 10px);
+      font-weight: 700;
 
       &:not(:last-child) {
         margin-right: 10px;
@@ -440,7 +441,7 @@
 
   button {
     padding: 10px;
-    background: #ba0000;
+    background: #ad0009;
     border-radius: 10px;
     border: none;
     color: white;
@@ -478,7 +479,7 @@
 }
 
 .chat-message-user > .chat-message-container > .chat-message-item {
-  background-color: var(--second);
+  background-color: #ffe8e7;
 }
 
 .chat-message-actions {

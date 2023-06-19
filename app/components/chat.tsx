@@ -166,6 +166,7 @@ function useSubmitHandler() {
   const submitKey = config.submitKey;
 
   const shouldSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    console.log(config);
     if (e.key !== "Enter") return false;
     if (e.key === "Enter" && e.nativeEvent.isComposing) return false;
     return (
@@ -901,7 +902,7 @@ export function Chat() {
               </div>
 
               <div className={styles["chat-message-item"]}>
-                <img width="100px" height="100px"></img>
+                <img width="100px" height="100px" alt="扫码关注公众号"></img>
                 <p>扫码关注公众号</p>
                 <button onClick={() => setkefuMessage(false)}>
                   点击返回对话

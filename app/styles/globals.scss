@@ -9,7 +9,7 @@
   --black: rgb(48, 48, 48);
   --gray: rgb(250, 250, 250);
   // --primary: rgb(29, 147, 171);
-  --primary: #ba0000;
+  --primary: #ad0009;
   --second: rgb(231, 248, 255);
   --hover-color: #f3f3f3;
   --bar-color: rgba(0, 0, 0, 0.1);
@@ -24,9 +24,9 @@
 
   // 亮色：以下为自定义需求变量
   --sidebar-background: rgb(200, 200, 200);
-  --sidebar-text-color: #ba0000;
+  --sidebar-text-color: #ad0009;
   --markdown-code: #1a1b26;
-  --login-text-color: #ba0000;
+  --login-text-color: #ad0009;
 }
 
 @mixin dark {
@@ -37,7 +37,7 @@
   --black: rgb(187, 187, 187);
   --gray: rgb(21, 21, 21);
   // --primary: rgb(29, 147, 171);
-  --primary: #ba0000;
+  --primary: #ad0009;
   --second: rgb(27 38 42);
   --hover-color: #323232;
 
@@ -54,7 +54,7 @@
   --sidebar-background: #000;
   --sidebar-text-color: #BBB;
   --markdown-code: rgb(72, 22, 30);
-  --login-text-color: #ba0000;
+  --login-text-color: #ad0009;
 }
 
 .light {

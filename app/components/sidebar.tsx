@@ -28,7 +28,7 @@ import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
 import { showLogin } from "./login";
 import LogoIcon from "../icons/logo.svg";
-import { Subscribe, showSubscribe } from "./subscribe";
+import { showSubscribe } from "./subscribe";
 import { useUserStore } from "../store/user";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
@@ -177,7 +177,8 @@ export function SideBar(props: { className?: string }) {
                   text={shouldNarrow ? undefined : Locale.Home.UserLogin}
                   onClick={() => {
                     // alert("弹出登录框");
-                    showLogin({});
+                    // showLogin({});
+                    showLogin();
                   }}
                   shadow
                 />

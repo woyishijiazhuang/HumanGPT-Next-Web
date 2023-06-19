@@ -18,7 +18,7 @@ const en: RequiredLocaleType = {
     ChatItemCount: (count: number) => `${count} messages`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} messages with HumanGPT`,
+    SubTitle: (count: number) => `${count} messages with HumanChat`,
     Actions: {
       ChatList: "Go To Chat List",
       CompressedHistory: "Compressed History Memory Prompt",
@@ -94,7 +94,7 @@ const en: RequiredLocaleType = {
   Home: {
     UserLogin: "LOGIN",
     UserLoginOut: "Sign Out",
-    LoginModelTitle: "Login HumanGPT",
+    LoginModelTitle: "Login HumanChat",
     PhonePlaceholder: "Please enter your phone number",
     CodePlaceholder: "Please enter the verification code",
     GetCode: "Get verification code",

@@ -1,20 +1,13 @@
-import { headers } from "next/dist/client/components/headers";
-
 const PROTOCOL = "http";
 const ROOTURL = "8.219.92.9:18005";
 
 export const APIgetCode = (phone: string) => {
-  console.log("APIgetCode:" + phone);
-  return fetch(`${PROTOCOL}://${ROOTURL}/sendmessage?phone=${phone}`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.message == "success") {
-        alert("验证码已发送,做成消息提示");
-      }
-    });
+  console.info("APIgetCode:" + phone);
+  return fetch(`${PROTOCOL}://${ROOTURL}/sendmessage?phone=${phone}`);
 };
 
 export const APIlogin = (phone: string, code: string) => {
+  console.info("APIlogin:" + JSON.stringify({ phone, code }));
   return fetch(`${PROTOCOL}://${ROOTURL}/login`, {
     method: "POST",
     headers: new Headers({
@@ -27,7 +20,7 @@ export const APIlogin = (phone: string, code: string) => {
       if (data.msg == "success") {
         return data.resultData;
       } else {
-        alert(data.msg);
+        return Promise.reject(data.msg);
       }
     });
 };
