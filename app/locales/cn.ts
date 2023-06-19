@@ -56,7 +56,7 @@ const cn = {
     },
   },
   Export: {
-    Title: "将HumanGPT分享给身边的人",
+    Title: "将HumanChat分享给身边的人",
     Copy: "全部复制",
     Download: "下载文件",
     Share: "分享到微信朋友圈",

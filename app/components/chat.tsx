@@ -166,7 +166,6 @@ function useSubmitHandler() {
   const submitKey = config.submitKey;
 
   const shouldSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    console.log(config);
     if (e.key !== "Enter") return false;
     if (e.key === "Enter" && e.nativeEvent.isComposing) return false;
     return (

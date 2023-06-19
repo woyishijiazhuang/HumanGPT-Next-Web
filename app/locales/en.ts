@@ -57,7 +57,7 @@ const en: RequiredLocaleType = {
     },
   },
   Export: {
-    Title: "Share HumanGPT with people around you",
+    Title: "Share HumanChat with people around you",
     Copy: "Copy All",
     Download: "Download",
     MessageFromYou: "Message From You",
