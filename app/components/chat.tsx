@@ -533,9 +533,8 @@ export function Chat() {
   const userStore = useUserStore() as any;
   const doSubmit = (userInput: string) => {
     if (userStore.token == "") {
-      alert("尚未登录");
-
-      return;
+      // alert("尚未登录");
+      // return;
     }
     if (userInput.trim() === "") return;
     // setIsLoading(true);
