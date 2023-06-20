@@ -534,6 +534,7 @@ export function Chat() {
   const doSubmit = (userInput: string) => {
     if (userStore.token == "") {
       alert("尚未登录");
+
       return;
     }
     if (userInput.trim() === "") return;
