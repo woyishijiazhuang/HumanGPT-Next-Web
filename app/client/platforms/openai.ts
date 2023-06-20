@@ -92,7 +92,7 @@ export class ChatGPTApi implements LLMApi {
               // 新增减少消息的api
               responseText = await res.clone().text();
               finish();
-              return Promise.resolve("success");
+              // return Promise.resolve("success");
             }
 
             if (
@@ -121,7 +121,7 @@ export class ChatGPTApi implements LLMApi {
               responseText = responseTexts.join("\n\n");
 
               finish();
-              return Promise.reject("error");
+              // return Promise.reject("error");
             }
           },
           onmessage(msg) {
@@ -156,12 +156,12 @@ export class ChatGPTApi implements LLMApi {
         const resJson = await res.json();
         const message = this.extractMessage(resJson);
         options.onFinish(message);
-        return Promise.reject("error");
+        // return Promise.reject("error");
       }
     } catch (e) {
       console.log("[Request] failed to make a chat reqeust", e);
       options.onError?.(e as Error);
-      return Promise.reject("error");
+      // return Promise.reject("error");
     }
   }
   async usage() {
