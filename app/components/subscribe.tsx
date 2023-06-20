@@ -7,6 +7,11 @@ import { showModal } from "./modal-box";
 import TickIcon from "../icons/tick.svg";
 // 后续在这里加国际化，替换文本内容
 import Locale from "../locales";
+// 微信和支付宝图片,支付api
+// import wxImg from ""
+// import zfbImg from ""
+
+import { APIzfbPay } from "../api/pay";
 
 function Subscribe(onClose?: () => void) {
   // 三个套餐的权益
@@ -34,6 +39,13 @@ function Subscribe(onClose?: () => void) {
     "自定义聊天功能",
     "极高易用性",
   ];
+
+  useEffect(() => {
+    // 请求初始化支付图片,这里不是二维码，具体操作百度
+    // APIzfbPay("13657139095", "1").then(data=>console.log(data))；
+    // 请求微信二维码
+  }, []);
+
   const [list, setList] = useState(listA);
 
   // 套餐选中状态，默认第一个套餐；1套餐13.9元, 2套餐39.9元, 3套餐99.9元
@@ -132,25 +144,6 @@ function Subscribe(onClose?: () => void) {
   );
 }
 export const showSubscribe = () => showModal(Subscribe);
-// export function showSubscribe() {
-//   const div = document.createElement("div");
-//   div.className = "modal-mask";
-//   document.body.appendChild(div);
-
-//   const root = createRoot(div);
-//   const closeModal = () => {
-//     root.unmount();
-//     div.remove();
-//   };
-
-//   div.onclick = (e) => {
-//     if (e.target === div) {
-//       closeModal();
-//     }
-//   };
-
-//   root.render(<Subscribe onClose={closeModal}></Subscribe>);
-// }
 
 function Taocan(props: { name: string; price: string; title: string }) {
   return (
@@ -161,7 +154,7 @@ function Taocan(props: { name: string; price: string; title: string }) {
     </>
   );
 }
-
+// 后续div排版要优化成ul排版
 function List2(props: { list: any[] }) {
   return (
     <ul className={styles["list"]}>
@@ -183,19 +176,4 @@ function List(props: { list: any[] }) {
       ))}
     </div>
   );
-}
-
-{
-  /* <a href="javascript:void(0);" className={styles["price"]}>
-          <Taocan name="A" price="13.9" title="HumanChat试用计划"></Taocan>
-          <List list={listA}></List>
-        </a>
-        <a href="javascript:void(0);" className={styles["price"]}>
-          <Taocan name="B" price="39.9" title="HumanChat季度无限次"></Taocan>
-          <List list={listB}></List>
-        </a>
-        <a href="javascript:void(0);" className={styles["price"]}>
-          <Taocan name="C" price="99.9" title="HumanChat年度无限次"></Taocan>
-          <List list={listC}></List>
-        </a> */
 }

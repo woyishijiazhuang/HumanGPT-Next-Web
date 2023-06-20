@@ -26,6 +26,13 @@ import { useAppConfig } from "../store/config";
 import { AuthPage } from "./auth";
 
 export function Loading(props: { noLogo?: boolean }) {
+  // 添加事件监听页面关闭
+  useEffect(() => {
+    window.onbeforeunload = function (e) {
+      window.localStorage.clear();
+    };
+  }, []);
+
   return (
     <div className={styles["loading-content"] + " no-dark"}>
       {!props.noLogo && <BotIcon />}

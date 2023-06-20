@@ -1,5 +1,5 @@
-const PROTOCOL = "http";
-const ROOTURL = "8.219.92.9:18005";
+export const PROTOCOL = "http";
+export const ROOTURL = "8.219.92.9:18005";
 
 export const APIgetCode = (phone: string) => {
   console.info("APIgetCode:" + phone);

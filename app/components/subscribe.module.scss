@@ -66,7 +66,13 @@
         padding: 0 20px;
         // background: #ccc;
         display: grid;
-        grid-template-columns: repeat(3, 138px);
+        grid-template-columns: repeat(3, 139px);
+        gap: 0 23px;
+        svg {
+            color: var(--primary);
+            filter: invert(0)!important;
+        }
+        
     }
 
     // .package {
@@ -284,6 +290,7 @@
         .list {
             // display: none;
             grid-template-columns: repeat(3, 33.33%);
+            gap: 0;
             font-size: 13px;
             svg {
                 vertical-align: text-top;
