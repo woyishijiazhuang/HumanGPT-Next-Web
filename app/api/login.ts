@@ -24,3 +24,8 @@ export const APIlogin = (phone: string, code: string) => {
       }
     });
 };
+
+export const APIcutChatnum = (phone: string) => {
+  console.info("APIgetCode:" + phone);
+  return fetch(`${PROTOCOL}://${ROOTURL}/downnum?phone=${phone}`);
+};

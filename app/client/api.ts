@@ -38,7 +38,7 @@ export interface LLMUsage {
 }
 
 export abstract class LLMApi {
-  abstract chat(options: ChatOptions): Promise<void>;
+  abstract chat(options: ChatOptions): Promise<any>;
   abstract usage(): Promise<LLMUsage>;
 }
 

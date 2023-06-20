@@ -78,7 +78,7 @@ export class ChatGPTApi implements LLMApi {
 
         controller.signal.onabort = finish;
 
-        fetchEventSource(chatPath, {
+        return fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
             clearTimeout(requestTimeoutId);
@@ -90,9 +90,9 @@ export class ChatGPTApi implements LLMApi {
 
             if (contentType?.startsWith("text/plain")) {
               // 新增减少消息的api
-              console.info("请求成功");
               responseText = await res.clone().text();
-              return finish();
+              finish();
+              return Promise.resolve("success");
             }
 
             if (
@@ -120,7 +120,8 @@ export class ChatGPTApi implements LLMApi {
 
               responseText = responseTexts.join("\n\n");
 
-              return finish();
+              finish();
+              return Promise.reject("error");
             }
           },
           onmessage(msg) {
@@ -155,10 +156,12 @@ export class ChatGPTApi implements LLMApi {
         const resJson = await res.json();
         const message = this.extractMessage(resJson);
         options.onFinish(message);
+        return Promise.reject("error");
       }
     } catch (e) {
       console.log("[Request] failed to make a chat reqeust", e);
       options.onError?.(e as Error);
+      return Promise.reject("error");
     }
   }
   async usage() {

@@ -63,6 +63,8 @@ import { useCommand } from "../command";
 import { prettyObject } from "../utils/format";
 import { ExportMessageModal } from "./exporter";
 import tr from "../locales/tr";
+import { useUserStore } from "../store/user";
+import { APIcutChatnum } from "../api/login";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -528,10 +530,29 @@ export function Chat() {
     }
   };
 
+  const userStore = useUserStore() as any;
   const doSubmit = (userInput: string) => {
+    if (userStore.token == "") {
+      alert("尚未登录");
+      return;
+    }
     if (userInput.trim() === "") return;
-    setIsLoading(true);
-    chatStore.onUserInput(userInput).then(() => setIsLoading(false)); //？
+    // setIsLoading(true);
+    // 聊天次数减一,发送一次请求
+    chatStore
+      .onUserInput(userInput)
+      .then(() => {
+        console.log("消息接受成功，次数减1");
+        userStore.setChatnum(userStore.chatnum - 1);
+        APIcutChatnum(userStore.phone);
+      })
+      .catch(() => {
+        console.log("聊天请求错误不发次数减1请求");
+      })
+      .finally(() => {
+        console.log(3);
+      });
+
     localStorage.setItem(LAST_INPUT_KEY, userInput);
     setUserInput("");
     setPromptHints([]);

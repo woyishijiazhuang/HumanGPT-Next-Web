@@ -5,7 +5,7 @@ import Locale from "../locales";
 import { IconButton } from "../components/button";
 
 import { useUserStore } from "../store/user";
-import { useAccessStore } from "../store";
+import { useAccessStore, useChatStore } from "../store";
 
 import { showModal } from "./modal-box";
 import { APIgetCode, APIlogin } from "../api/login";
@@ -17,35 +17,24 @@ function Login(onClose?: () => void) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   // 手机号，验证码，登录token，聊天次数，vip等级
-  const {
-    phone,
-    setPhone,
-    code,
-    setCode,
-    token,
-    setToken,
-    chatnum,
-    setChatnum,
-    vipType,
-    setVipType,
-  } = useUserStore();
+  const userStore = useUserStore() as any;
 
   // 输入手机号时存储到store
   function phoneKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
-    setPhone(($event.target as HTMLInputElement).value);
+    userStore.setPhone(($event.target as HTMLInputElement).value);
   }
 
   // 检测手机号格式
   function testPhone() {
     const reg =
       /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/;
-    return reg.test(phone);
+    return reg.test(userStore.phone);
   }
 
   // 失去焦点时，判断phone格式，改变样式
   const [telStyle, setTelStyle] = React.useState(styles["login-tel"]);
   function phoneBlur() {
-    if (phone.length == 0) {
+    if (userStore.phone.length == 0) {
       setTelStyle(styles["tel-default"]);
       return;
     }
@@ -70,7 +59,7 @@ function Login(onClose?: () => void) {
     }, 1000);
 
     // 获取验证码
-    APIgetCode(phone)
+    APIgetCode(userStore.phone)
       .then((data) => alert("验证码发送成功"))
       .catch((data) => alert("验证码发送失败"));
   }
@@ -79,18 +68,18 @@ function Login(onClose?: () => void) {
   function codeKeyUp($event: React.KeyboardEvent<HTMLInputElement>) {
     const code = ($event.target as HTMLInputElement).value;
     if (code.length == 6 && testPhone()) {
-      setCode(code);
+      userStore.setCode(code);
       setIsLoading(true);
-      APIlogin(phone, code)
+      APIlogin(userStore.phone, code)
         .then((resultData) => {
           // 存登录状态
-          setToken("login");
+          userStore.setToken("login");
           // 存apikey
           accessStore.updateToken(resultData.key);
           // 存聊天次数
-          setChatnum(resultData.num);
+          userStore.setChatnum(resultData.num);
           // 存vip等级
-          setVipType(resultData.vipType);
+          userStore.setVipType(resultData.vipType);
           // 关闭登录框
           onClose?.();
         })

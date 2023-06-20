@@ -4,7 +4,7 @@ import SuccessIcon from "../icons/bubble-success.svg";
 // 气泡函数
 interface message {
   type?: "success" | "error" | "warning";
-  msg: string;
+  msg: JSX.Element;
 }
 function Bubble(props: message) {
   return (

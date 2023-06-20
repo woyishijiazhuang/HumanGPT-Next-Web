@@ -112,7 +112,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-  const userStore = useUserStore();
+  const userStore = useUserStore() as any;
   useHotKey();
 
   return (
@@ -136,7 +136,8 @@ export function SideBar(props: { className?: string }) {
           icon={<TwrapIcon />}
           text={shouldNarrow ? undefined : Locale.Mask.Name}
           className={styles["sidebar-bar-button"]}
-          onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
+          // onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
+          onClick={() => navigate(Path.Masks)}
           shadow
         />
       </div>
@@ -206,7 +207,7 @@ export function SideBar(props: { className?: string }) {
                 onClick={() => {
                   // alert("这里要与后端交互写对话剩余次数");
                   createBubble({
-                    msg: "测试气泡通知",
+                    msg: <>气泡通知测试</>,
                   });
                 }}
                 shadow
