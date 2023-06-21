@@ -23,6 +23,7 @@ import { DEFAULT_MASK_AVATAR } from "../store/mask";
 import { api } from "../client/api";
 import { prettyObject } from "../utils/format";
 import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
+import { createBubble } from "./bubble";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -273,14 +274,19 @@ export function PreviewActions(props: {
 
   const onRenderMsgs = (msgs: ChatMessage[]) => {
     setShouldExport(false);
-    // 微信分享
-    new Promise(() => {
-      alert("分享到微信，等待实现");
+
+    let s = new Promise((resolve, reject) => {
+      createBubble({ msg: <>等待企业微信获取分享token！</> });
+      console.log("分享到微信，等待实现");
+      reject("分享失败");
     })
-      .catch((e) => {
-        alert(e);
+      .catch((res) => {
+        createBubble({ msg: <>{res}</> });
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        console.log("取消加载动画");
+        setLoading(false);
+      });
 
     // api
     //   .share(msgs)

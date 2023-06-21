@@ -9,6 +9,7 @@ import { useAccessStore, useChatStore } from "../store";
 
 import { showModal } from "./modal-box";
 import { APIgetCode, APIlogin } from "../api/login";
+import { createBubble } from "./bubble";
 
 function Login(onClose?: () => void) {
   const accessStore = useAccessStore();
@@ -47,7 +48,11 @@ function Login(onClose?: () => void) {
   // 点击验证码,测试手机号格式
   function codeHandle() {
     if (!testPhone()) {
-      alert("请输入正确的手机号");
+      // alert("请输入正确的手机号");
+      createBubble({
+        type: "error",
+        msg: <>请输入正确的手机号</>,
+      });
       return;
     }
     // 1. 设置样式 60s
@@ -60,8 +65,13 @@ function Login(onClose?: () => void) {
 
     // 获取验证码
     APIgetCode(userStore.phone)
-      .then((data) => alert("验证码发送成功"))
-      .catch((data) => alert("验证码发送失败"));
+      .then((data) =>
+        createBubble({
+          type: "success",
+          msg: <>验证码发送成功</>,
+        }),
+      )
+      .catch((data) => createBubble({ msg: <>验证码发送失败</> }));
   }
 
   // 输入验证码事件
@@ -84,7 +94,11 @@ function Login(onClose?: () => void) {
           onClose?.();
         })
         .catch((data) => {
-          alert("登陆失败");
+          // alert("登陆失败");
+          createBubble({
+            type: "error",
+            msg: <>登录失败</>,
+          });
         })
         .finally(() => {
           setIsLoading(false);

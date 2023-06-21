@@ -117,14 +117,17 @@ function Subscribe(onClose?: () => void) {
       <div className={styles["pay"]}>
         <p>支付通道</p>
         <div>
-          <div className={styles["code"]}></div>
+          <div className={styles["code"]}>
+            <img src="" alt="支付二维码" />
+          </div>
           <div className={styles["payplant"]}>
-            <a
+            {/* a 换成 radio */}
+            {/* <a
               href="javascript:void(0)"
               className={styles["zhifubao"]}
               onClick={() => setPay("zfb")}
             >
-              <img alt="支付宝icon"></img>
+              <img alt="zfbImg"></img>
               支付宝支付
               <TickIcon></TickIcon>
             </a>
@@ -133,10 +136,10 @@ function Subscribe(onClose?: () => void) {
               className={styles["weixin"]}
               onClick={() => setPay("wx")}
             >
-              <img alt="微信icon"></img>
+              <img alt="wxImg"></img>
               微信支付
               <TickIcon></TickIcon>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

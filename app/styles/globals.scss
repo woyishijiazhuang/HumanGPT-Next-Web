@@ -366,9 +366,10 @@ pre {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+// 气泡消息
 .bubble-list {
   position: absolute;
   top: 2em;
   margin: 0 auto;
+  z-index: 9999;
 }

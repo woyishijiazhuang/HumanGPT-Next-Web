@@ -65,6 +65,7 @@ import { ExportMessageModal } from "./exporter";
 import tr from "../locales/tr";
 import { useUserStore } from "../store/user";
 import { APIcutChatnum } from "../api/login";
+import { createBubble } from "./bubble";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -533,8 +534,16 @@ export function Chat() {
   const userStore = useUserStore() as any;
   const doSubmit = (userInput: string) => {
     if (userStore.token == "") {
-      // alert("尚未登录");
-      // return;
+      createBubble({
+        msg: <>需要登录</>,
+      });
+      return;
+    }
+    if (parseInt(userStore.chatnum) <= 0) {
+      createBubble({
+        msg: <>对话次数不足</>,
+      });
+      return;
     }
     if (userInput.trim() === "") return;
     // setIsLoading(true);
@@ -828,90 +837,86 @@ export function Chat() {
             const shouldShowClearContextDivider = i === clearContextIndex - 1;
 
             return (
-              <>
-                <div
-                  key={i}
-                  className={
-                    isUser
-                      ? styles["chat-message-user"]
-                      : styles["chat-message"]
-                  }
-                >
-                  <div className={styles["chat-message-container"]}>
-                    <div className={styles["chat-message-avatar"]}>
-                      {message.role === "user" ? (
-                        <Avatar avatar={config.avatar} />
-                      ) : (
-                        <MaskAvatar mask={session.mask} />
-                      )}
-                    </div>
-                    {showTyping && (
-                      <div className={styles["chat-message-status"]}>
-                        {Locale.Chat.Typing}
-                      </div>
-                    )}
-                    <div className={styles["chat-message-item"]}>
-                      {showActions && (
-                        <div className={styles["chat-message-top-actions"]}>
-                          {message.streaming ? (
-                            <div
-                              className={styles["chat-message-top-action"]}
-                              onClick={() => onUserStop(message.id ?? i)}
-                            >
-                              {Locale.Chat.Actions.Stop}
-                            </div>
-                          ) : (
-                            <>
-                              <div
-                                className={styles["chat-message-top-action"]}
-                                onClick={() => onDelete(message.id ?? i)}
-                              >
-                                {Locale.Chat.Actions.Delete}
-                              </div>
-                              <div
-                                className={styles["chat-message-top-action"]}
-                                onClick={() => onResend(message.id ?? i)}
-                              >
-                                {Locale.Chat.Actions.Retry}
-                              </div>
-                            </>
-                          )}
-
-                          <div
-                            className={styles["chat-message-top-action"]}
-                            onClick={() => copyToClipboard(message.content)}
-                          >
-                            {Locale.Chat.Actions.Copy}
-                          </div>
-                        </div>
-                      )}
-                      <Markdown
-                        content={message.content}
-                        loading={
-                          (message.preview || message.content.length === 0) &&
-                          !isUser
-                        }
-                        onContextMenu={(e) => onRightClick(e, message)}
-                        onDoubleClickCapture={() => {
-                          if (!isMobileScreen) return;
-                          setUserInput(message.content);
-                        }}
-                        fontSize={fontSize}
-                        parentRef={scrollRef}
-                        defaultShow={i >= messages.length - 10}
-                      />
-                    </div>
-                    {!isUser && !message.preview && (
-                      <div className={styles["chat-message-actions"]}>
-                        <div className={styles["chat-message-action-date"]}>
-                          {message.date.toLocaleString()}
-                        </div>
-                      </div>
+              <div
+                key={i}
+                className={
+                  isUser ? styles["chat-message-user"] : styles["chat-message"]
+                }
+              >
+                <div className={styles["chat-message-container"]}>
+                  <div className={styles["chat-message-avatar"]}>
+                    {message.role === "user" ? (
+                      <Avatar avatar={config.avatar} />
+                    ) : (
+                      <MaskAvatar mask={session.mask} />
                     )}
                   </div>
+                  {showTyping && (
+                    <div className={styles["chat-message-status"]}>
+                      {Locale.Chat.Typing}
+                    </div>
+                  )}
+                  <div className={styles["chat-message-item"]}>
+                    {showActions && (
+                      <div className={styles["chat-message-top-actions"]}>
+                        {message.streaming ? (
+                          <div
+                            className={styles["chat-message-top-action"]}
+                            onClick={() => onUserStop(message.id ?? i)}
+                          >
+                            {Locale.Chat.Actions.Stop}
+                          </div>
+                        ) : (
+                          <>
+                            <div
+                              className={styles["chat-message-top-action"]}
+                              onClick={() => onDelete(message.id ?? i)}
+                            >
+                              {Locale.Chat.Actions.Delete}
+                            </div>
+                            <div
+                              className={styles["chat-message-top-action"]}
+                              onClick={() => onResend(message.id ?? i)}
+                            >
+                              {Locale.Chat.Actions.Retry}
+                            </div>
+                          </>
+                        )}
+
+                        <div
+                          className={styles["chat-message-top-action"]}
+                          onClick={() => copyToClipboard(message.content)}
+                        >
+                          {Locale.Chat.Actions.Copy}
+                        </div>
+                      </div>
+                    )}
+                    <Markdown
+                      content={message.content}
+                      loading={
+                        (message.preview || message.content.length === 0) &&
+                        !isUser
+                      }
+                      onContextMenu={(e) => onRightClick(e, message)}
+                      onDoubleClickCapture={() => {
+                        if (!isMobileScreen) return;
+                        setUserInput(message.content);
+                      }}
+                      fontSize={fontSize}
+                      parentRef={scrollRef}
+                      defaultShow={i >= messages.length - 10}
+                    />
+                  </div>
+                  {!isUser && !message.preview && (
+                    <div className={styles["chat-message-actions"]}>
+                      <div className={styles["chat-message-action-date"]}>
+                        {message.date.toLocaleString()}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 {shouldShowClearContextDivider && <ClearContextDivider />}
-              </>
+              </div>
             );
           })}
         {/* 客服二维码消息 */}

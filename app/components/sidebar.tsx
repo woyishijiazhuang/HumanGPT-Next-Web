@@ -205,10 +205,7 @@ export function SideBar(props: { className?: string }) {
                   (shouldNarrow ? "" : Locale.Home.Residue) + userStore.chatnum
                 }
                 onClick={() => {
-                  // alert("这里要与后端交互写对话剩余次数");
-                  createBubble({
-                    msg: <>气泡通知测试</>,
-                  });
+                  alert("新建对话次数充值模块，待做");
                 }}
                 shadow
               />
